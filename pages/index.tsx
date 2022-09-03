@@ -11,7 +11,7 @@ export function Index() {
       </p>
       <form
         class="flex flex-col gap-8 rounded-xl p-4 bg-slate-300"
-        action="/feed"
+        action="/feed.xml"
       >
         <label>
           <p class="text-xl font-bold">Page URL</p>

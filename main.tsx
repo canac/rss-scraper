@@ -27,7 +27,7 @@ serve((req) => {
       return html({ body: <Index /> });
     }
 
-    if (req.method === "GET" && url.pathname === "/feed") {
+    if (req.method === "GET" && url.pathname === "/feed.xml") {
       return feedFromUrl(readSearchParam(url.searchParams, "url"), {
         items: readSearchParam(url.searchParams, "itemSelector"),
         title: readSearchParam(url.searchParams, "titleSelector"),
