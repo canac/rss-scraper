@@ -17,14 +17,7 @@ function readSearchParam(searchParams: URLSearchParams, name: string): string {
 // Enable UnoCSS
 html.use(UnoCSS());
 
-const rawPort = Deno.env.get("PORT");
-if (!rawPort) {
-  throw new Error("$PORT is not set");
-}
-const port = parseInt(rawPort, 10);
-if (Number.isNaN(port)) {
-  throw new Error("$PORT is not an integer");
-}
+const port = parseInt(Deno.env.get("PORT") ?? "");
 
 serve((req) => {
   try {
@@ -48,4 +41,4 @@ serve((req) => {
       : "Internal Server Error";
     return new Response(message, { status: 500 });
   }
-}, { port });
+}, { port: Number.isNaN(port) ? undefined : port });
