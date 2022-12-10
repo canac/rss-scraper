@@ -1,5 +1,5 @@
 // This file is essentially copied from https://github.com/dyedgreen/deno-jsx/blob/main/mod.ts
-// It removes the logic for disallows certain HTML tags from having content, therefore making it suitable for XML.
+// It removes the logic that disallows certain HTML tags from having content, therefore making it suitable for XML.
 
 declare global {
   namespace JSX {
