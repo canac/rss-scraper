@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h, renderToString } from "./xml-jsx.ts";
 import { load } from "https://esm.sh/cheerio@1.0.0-rc.12";
+import { ElementType } from "https://esm.sh/domelementtype@2.3.0";
 
 const isNotNull = <I,>(i: I | null): i is NonNullable<I> => i !== null;
 
@@ -28,7 +29,11 @@ export async function feedFromUrl(
       return null;
     }
 
-    const link = $item.find("a").attr("href");
+    // Allow the item itself to be the link
+    const $link = item.type === ElementType.Tag && item.tagName === "a"
+      ? $item
+      : $item.find("a");
+    const link = $link.attr("href");
     if (!link) {
       console.error("Couldn't find the link element");
       return null;
