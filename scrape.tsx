@@ -50,7 +50,7 @@ export async function feedFromUrl(
     await renderToString(
       <rss version="2.0">
         <channel>
-          <title>{$("title").text()}</title>
+          <title>{$("head > title").text()}</title>
           <link>{url}</link>
           {items.map((item) => (
             <item>
