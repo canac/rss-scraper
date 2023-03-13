@@ -17,7 +17,7 @@ function readSearchParam(searchParams: URLSearchParams, name: string): string {
 // Enable UnoCSS
 html.use(UnoCSS());
 
-const port = parseInt(Deno.env.get("PORT") ?? "");
+const port = parseInt(Deno.env.get("PORT") ?? "", 10);
 
 serve((req) => {
   try {
