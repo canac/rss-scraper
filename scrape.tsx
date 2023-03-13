@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h, renderToString } from "./xml-jsx.ts";
-import { load } from "https://esm.sh/cheerio@1.0.0-rc.12";
-import { ElementType } from "https://esm.sh/domelementtype@2.3.0";
+import { load } from "https://esm.sh/v111/cheerio@1.0.0-rc.12";
+import { ElementType } from "https://esm.sh/v111/domelementtype@2.3.0";
 
 const isNotNull = <I,>(i: I | null): i is NonNullable<I> => i !== null;
 
