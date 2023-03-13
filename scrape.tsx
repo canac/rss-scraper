@@ -51,6 +51,7 @@ export async function feedFromUrl(
       <rss version="2.0">
         <channel>
           <title>{$("head > title").text()}</title>
+          <description>Scraped RSS feed for {url}</description>
           <link>{url}</link>
           {items.map((item) => (
             <item>
