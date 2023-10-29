@@ -19,6 +19,10 @@ export async function feedFromUrl(
   selectors: Selectors,
 ): Promise<Response> {
   const res = await fetch(url);
+  if (!res.ok) {
+    return new Response(res.statusText, { status: res.status });
+  }
+
   const text = await res.text();
   const $ = load(text);
   const items = $(selectors.items).map((_, item) => {
