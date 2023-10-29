@@ -50,6 +50,12 @@ export async function feedFromUrl(
     };
   }).toArray().filter(isNotNull);
 
+  if (items.length === 0) {
+    return new Response("No items found", {
+      status: 404,
+    });
+  }
+
   const xml = '<?xml version="1.0" encoding="UTF-8" ?>' +
     await renderToString(
       <rss version="2.0">
