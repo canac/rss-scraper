@@ -1,5 +1,4 @@
 /** @jsx h */
-import { serve } from "https://deno.land/std@0.154.0/http/server.ts";
 import { h, html } from "https://deno.land/x/htm@0.0.10/mod.tsx";
 import { UnoCSS } from "https://deno.land/x/htm@0.0.10/plugins.ts";
 import { Index } from "./pages/index.tsx";
@@ -18,8 +17,7 @@ function readSearchParam(searchParams: URLSearchParams, name: string): string {
 html.use(UnoCSS());
 
 const port = parseInt(Deno.env.get("PORT") ?? "", 10);
-
-serve((req) => {
+Deno.serve({ port: Number.isNaN(port) ? undefined : port }, (req) => {
   try {
     const url = new URL(req.url);
 
@@ -44,4 +42,4 @@ serve((req) => {
       : "Internal Server Error";
     return new Response(message, { status: 500 });
   }
-}, { port: Number.isNaN(port) ? undefined : port });
+});
