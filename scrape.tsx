@@ -1,6 +1,6 @@
 import { xml } from "./xml.ts";
-import { load } from "https://esm.sh/v111/cheerio@1.0.0-rc.12";
-import { ElementType } from "https://esm.sh/v111/domelementtype@2.3.0";
+import { load } from "npm:cheerio@1.1.0";
+import { ElementType } from "npm:domelementtype@2.3.0";
 
 export type Selectors = {
   items: string;
