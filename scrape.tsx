@@ -1,7 +1,4 @@
-// deno-lint-ignore-file jsx-void-dom-elements-no-children
-
-/** @jsx h */
-import { h, renderToString } from "./xml-jsx.ts";
+import { xml } from "./xml.ts";
 import { load } from "https://esm.sh/v111/cheerio@1.0.0-rc.12";
 import { ElementType } from "https://esm.sh/v111/domelementtype@2.3.0";
 
@@ -56,24 +53,25 @@ export async function feedFromUrl(
     });
   }
 
-  const xml = '<?xml version="1.0" encoding="UTF-8" ?>' +
-    await renderToString(
-      <rss version="2.0">
-        <channel>
-          <title>{$("head > title").text()}</title>
-          <description>Scraped RSS feed for {url}</description>
-          <link>{url}</link>
-          {items.map((item) => (
-            <item>
-              <title>{item.title}</title>
-              <link>{item.link}</link>
-              <guid>{item.link}</guid>
-            </item>
-          ))}
-        </channel>
-      </rss>,
-    );
-  return new Response(xml, {
+  const xmlStr = '<?xml version="1.0" encoding="UTF-8" ?>' + xml`
+<rss version="2.0">
+  <channel>
+    <title>${$("head > title").text()}</title>
+    <description>Scraped RSS feed for ${url}</description>
+    <link>${url}</link>
+    ${
+    items.map((item) =>
+      xml`<item>
+  <title>${item.title}</title>
+  <link>${item.link}</link>
+  <guid>${item.link}</guid>
+</item>`
+    )
+  }
+  </channel>
+</rss>
+`;
+  return new Response(xmlStr, {
     headers: { "content-type": "application/xml;charset=utf-8" },
   });
 }
