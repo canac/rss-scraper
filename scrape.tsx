@@ -1,9 +1,9 @@
+// deno-lint-ignore-file jsx-void-dom-elements-no-children
+
 /** @jsx h */
 import { h, renderToString } from "./xml-jsx.ts";
 import { load } from "https://esm.sh/v111/cheerio@1.0.0-rc.12";
 import { ElementType } from "https://esm.sh/v111/domelementtype@2.3.0";
-
-const isNotNull = <I,>(i: I | null): i is NonNullable<I> => i !== null;
 
 export type Selectors = {
   items: string;
@@ -48,7 +48,7 @@ export async function feedFromUrl(
       // Resolve the potentially relative URL into an absolute URL
       link: new URL(link, url).toString(),
     };
-  }).toArray().filter(isNotNull);
+  }).toArray().filter(Boolean);
 
   if (items.length === 0) {
     return new Response("No items found", {
