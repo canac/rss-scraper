@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from "https://deno.land/x/htm@0.0.10/mod.tsx";
+import { h } from "https://deno.land/x/htm@0.2.3/mod.ts";
 
 export function Index() {
   return (

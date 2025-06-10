@@ -1,6 +1,6 @@
 /** @jsx h */
-import { h, html } from "https://deno.land/x/htm@0.0.10/mod.tsx";
-import { UnoCSS } from "https://deno.land/x/htm@0.0.10/plugins.ts";
+import html, { h } from "https://deno.land/x/htm@0.2.3/mod.ts";
+import UnoCSS from "https://deno.land/x/htm@0.2.3/plugins/unocss.ts";
 import { Index } from "./pages/index.tsx";
 import { feedFromUrl } from "./scrape.tsx";
 
